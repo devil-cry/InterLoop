@@ -2,12 +2,20 @@
 InterLoop : Light-weight tool for inter-loop prediction with ChIA-PET or HiChIP datasets. 
 
 ---
-## Installation
+## Requirements & Installation
 
 ### Environment Requirement
 ```markdown
 gcc >= 8.3.0
 cmake >= 3.20
+```
+
+### Installation
+```shell
+git clone https://github.com/devil-cry/InterLoop.git
+cd InterLoop
+cmake .
+make
 ```
 
 ---

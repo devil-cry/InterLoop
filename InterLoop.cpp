@@ -139,6 +139,7 @@ int main(int argc, char** argv)
     set_inc_pairs = IO::get_include_pairs(program.get("--include_pairs"), logger);
 
     string out_dir = program.get("--output");
+    IO::mk_dir(out_dir);
 
     map<string, vector<Bedpe>> mp_bedpe;
     IO::read_bedpe_file(program.get("--file"), set_inc_pairs, mp_bedpe, logger);

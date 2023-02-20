@@ -20,6 +20,7 @@ public:
     static void read_bedpe_file(const std::string& file, const std::set<std::string>& inc_pairs,
                                 std::map<std::string, std::vector<Bedpe>>& mp, Logger& logger);
     static void output_loop_file(const std::string& file, const std::vector<Bedpe>& loop, Logger& logger);
+    static void mk_dir(const std::string& dir);
 };
 
 

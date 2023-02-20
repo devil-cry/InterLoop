@@ -99,11 +99,15 @@ void IO::read_bedpe_file(const std::string& file, const std::set<std::string>& i
 void IO::output_loop_file(const std::string &file, const std::vector<Bedpe> &vec_loop, Logger &logger) {
 
     std::string dir = file.substr(0, file.find_first_of('/'));
-    if(!dir.empty()) {
-        if (access(dir.c_str(), F_OK) != 0) {
-            rmdir(dir.c_str());
-        }
-        mkdir(dir.c_str());
+
+    if (dir.empty()) {
+        logger.ERROR("Null dirname with option '-o' .");
+        exit(1);
+    }
+
+    if (access(dir.c_str(), F_OK) != 0) {
+        logger.ERROR("Dir %s is not found or created failed.", dir.c_str());
+        exit(1);
     }
 
     std::ofstream ofs = std::ofstream(file.c_str());
@@ -112,4 +116,10 @@ void IO::output_loop_file(const std::string &file, const std::vector<Bedpe> &vec
         ofs << loop << "\n";
     }
 
+}
+
+void IO::mk_dir(const std::string &dir) {
+    if (!dir.empty()) {
+        system(("mkdir " + dir).c_str());
+    }
 }

@@ -17,7 +17,7 @@ Bedpe::Bedpe(const std::string& chr_L, int64_t st_L, int64_t en_L,
     this->chr_R = chr_R;
     this->st_R = st_R;
     this->en_R = en_R;
-    if (chr_L > chr_R) {
+    if (cmp_chrome(chr_L, chr_R) == 1 ) {
         std::swap(this->chr_L, this->chr_R);
         std::swap(this->st_L, this->st_R);
         std::swap(this->en_L, this->en_R);

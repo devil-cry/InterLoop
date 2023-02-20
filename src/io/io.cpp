@@ -3,7 +3,7 @@
 //
 
 #include <sstream>
-#include <direct.h>
+#include <unistd.h>
 #include <algorithm>
 
 
@@ -100,10 +100,10 @@ void IO::output_loop_file(const std::string &file, const std::vector<Bedpe> &vec
 
     std::string dir = file.substr(0, file.find_first_of('/'));
     if(!dir.empty()) {
-        if (_access(dir.c_str(), 0) != -1) {
-            _rmdir(dir.c_str());
+        if (access(dir.c_str(), F_OK) != 0) {
+            rmdir(dir.c_str());
         }
-        _mkdir(dir.c_str());
+        mkdir(dir.c_str());
     }
 
     std::ofstream ofs = std::ofstream(file.c_str());

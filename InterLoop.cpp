@@ -78,7 +78,7 @@ void pipeline(const string& group, const vector<Bedpe>& vec_bedpe, const string&
     atomic_running_thr_cnt++;
 
     try {
-        logger.INFO("Start thread : %s (thread_id : %d)", group.c_str(), this_thread::get_id());
+        logger.INFO("Start thread : %s .", group.c_str());
 
 //        View::show_golden_in_valid_bedpe("../res/dataset_2_gold.bedpe", group, vec_bedpe, logger);
 
@@ -95,8 +95,8 @@ void pipeline(const string& group, const vector<Bedpe>& vec_bedpe, const string&
         string outfile = out_dir + "/" + group + ".loop";
         IO::output_loop_file(outfile, vec_candidate_loop, logger);
 
-        logger.INFO("Finished thread : %s (thread_id : %d), found %d inter-loops and saved in file '%s'.",
-                    group.c_str(), this_thread::get_id(), vec_candidate_loop.size(), outfile.c_str());
+        logger.INFO("Finished thread : %s , found %d inter-loops and saved in file '%s'.",
+                    group.c_str(), vec_candidate_loop.size(), outfile.c_str());
     } catch (const exception &err) {
         cerr << err.what() << "\n";
         logger.ERROR("Found something wrong in group '%s'.", group.c_str());

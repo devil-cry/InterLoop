@@ -4,7 +4,7 @@ InterLoop : Light-weight tool for inter-loop prediction with ChIA-PET or HiChIP 
 ---
 ## Installation
 
-###Environment Requirement
+### Environment Requirement
 ```markdown
 gcc >= 8.3.0
 cmake >= 3.20

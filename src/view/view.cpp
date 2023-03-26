@@ -3,6 +3,7 @@
 //
 
 #include <sstream>
+#include <limits>
 
 #include "view/view.h"
 #include "share/global_def.h"
@@ -33,7 +34,7 @@ void View::show_golden_in_valid_bedpe(const std::string& file_name, const std::s
     long long int score = 0;
 
     int width = 5000000;
-    std::vector<int> l_score(100000, 0), r_score(100000, 0);
+
     std::vector<int> l_cnt(100000, 0), r_cnt(100000, 0);
     int min_pos = std::numeric_limits<int>::max(), max_pos = std::numeric_limits<int>::min();
     for(auto &bedpe : vec_bedpe) {

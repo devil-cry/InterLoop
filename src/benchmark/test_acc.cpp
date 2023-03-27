@@ -142,7 +142,7 @@ int main(int argc, char** argv)
     double rec = 100.0 * goldenTN / vec_golden.size();
 
     cout << groupName << "\t" << vec_golden.size() << "\t" << vec_test.size() << "\t" << goldenTN << "\t"
-        << fixed << setprecision(2) << rec << "%";
+        << fixed << setprecision(2) << rec << "%" << endl;
 
     return 0;
 }

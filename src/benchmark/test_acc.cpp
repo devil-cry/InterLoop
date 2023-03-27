@@ -94,7 +94,7 @@ int main(int argc, char** argv)
     auto is_silent = program.is_used("-s");
     if(!is_silent){
         string title = "GroupName \t GoldenCount \t TestCount \t GoldenTN \t REC";
-        cout << title << endl;
+        logger.INFO(title.c_str());
     }
 
     auto& groupName = (*mp_test.begin()).first;
@@ -128,7 +128,8 @@ int main(int argc, char** argv)
 
         if(final_match_cnt == 0)
             return false;
-        return is_single_match_mode || match_anchor_cnt == 2 ;
+        return is_single_match_mode || final_match_cnt == 2 ;
+
     };
 
     vector<bool> vis(vec_golden.size());
@@ -141,8 +142,10 @@ int main(int argc, char** argv)
     int goldenTN = count(vis.begin(), vis.end(), true);
     double rec = 100.0 * goldenTN / vec_golden.size();
 
-    cout << groupName << "\t" << vec_golden.size() << "\t" << vec_test.size() << "\t" << goldenTN << "\t"
-        << fixed << setprecision(2) << rec << "%" << endl;
+    string str_out = groupName + "\t" + to_string(vec_golden.size()) + "\t" + to_string(vec_test.size()) + "\t" +
+            to_string(goldenTN) + "\t" + to_string(rec) + "%%";
+
+    logger.INFO(str_out.c_str());
 
     return 0;
 }

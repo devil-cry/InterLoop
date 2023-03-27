@@ -106,7 +106,7 @@ int main(int argc, char** argv)
 
     auto dis = program.get<int>("-d");
 
-    auto check_hit = [&](const Bedpe& g, const Bedpe& t){
+    auto check_hit = [&](const Bedpe& g, const Bedpe& t) {
         int match_anchor_cnt = 0, final_match_cnt = 0;
         int64_t len;
 
@@ -118,6 +118,7 @@ int main(int argc, char** argv)
         match_anchor_cnt += (len <= dis ? 1 : 0);
         final_match_cnt = max(final_match_cnt, match_anchor_cnt);
 
+        // two anchors cross connection situation
         match_anchor_cnt = 0;
         len = (g.st_L < t.st_R ? t.st_R - g.en_L : g.st_L - t.en_R);
         match_anchor_cnt += (len <= dis ? 1 : 0);
@@ -130,7 +131,7 @@ int main(int argc, char** argv)
         return is_single_match_mode || match_anchor_cnt == 2 ;
     };
 
-    vector<bool> vis(vec_golden.size(), false);
+    vector<bool> vis(vec_golden.size());
     for(auto& bedpe_t : vec_test) {
         for(int i=0; i < vec_golden.size(); i++){
             if(check_hit(vec_golden[i], bedpe_t))
